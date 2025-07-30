@@ -21,3 +21,6 @@ Route::prefix('v1')->middleware(['api'])->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update']);
     Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 });
+Route::get('/materialize', function () {
+    return Inertia::render('Materialize/Showcase');
+})->name('materialize.showcase');
