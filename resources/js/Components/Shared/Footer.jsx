@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <div className="footer-copyright">
                 <div className="container">
-                    © {new Date().getFullYear()} Materialize App
+                    © {new Date().getFullYear()} Material with React
                     <a 
                         className="grey-text text-lighten-4 right" 
                         href="#!"

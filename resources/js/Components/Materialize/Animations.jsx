@@ -1,10 +1,23 @@
 import { useState, useEffect } from 'react';
-
+import { useForm } from '@inertiajs/react';
 export default function Animations() {
     const [activeTab, setActiveTab] = useState('hover');
     const [scaleVisible, setScaleVisible] = useState(true);
     const [fadeVisible, setFadeVisible] = useState(true);
-
+      const { data, setData, post, processing, errors } = useForm({
+        name: '',
+        description: '',
+        stock: 0,
+        price: 0,
+        is_active: true,
+        available_from: '',
+        image: ''
+      })
+    
+      const handleSubmit = (e) => {
+        e.preventDefault()
+        post('/api/v1/materialize')
+      }
     useEffect(() => {
         // Initialize Materialize components
         if (typeof M !== 'undefined') {
@@ -116,16 +129,112 @@ export default function Animations() {
                                 className="btn waves-effect waves-light modal-trigger" 
                                 data-target="demo-modal"
                             >
-                                Open Modal
+                                Create Product
                             </button>
                             
                             <div id="demo-modal" className="modal">
                                 <div className="modal-content">
                                     <h4>Modal Demo</h4>
-                                    <p>This modal has a built-in fade animation.</p>
+                                                    <form onSubmit={handleSubmit} className="container">
+
+      {/* Product Name */}
+      <div className="input-field">
+        <input
+          id="name"
+          type="text"
+          value={data.name}
+          onChange={(e) => setData("name", e.target.value)}
+          className="validate"
+        />
+        <label htmlFor="name">Product Name</label>
+      </div>
+
+      {/* Description */}
+      <div className="input-field">
+        <textarea
+          id="description"
+          className="materialize-textarea validate"
+          value={data.description}
+          onChange={(e) => setData("description", e.target.value)}
+        ></textarea>
+        <label htmlFor="description">Description</label>
+      </div>
+
+      <div className="row">
+        {/* Stock */}
+        <div className="input-field col s6">
+          <input
+            id="stock"
+            type="number"
+            value={data.stock}
+            onChange={(e) => setData("stock", e.target.value)}
+          />
+          <label htmlFor="stock">Stock</label>
+        </div>
+
+        {/* Price */}
+        <div className="input-field col s6">
+          <input
+            id="price"
+            type="number"
+            step="0.01"
+            value={data.price}
+            onChange={(e) => setData("price", e.target.value)}
+          />
+          <label htmlFor="price">Price</label>
+        </div>
+      </div>
+
+      {/* Available From */}
+      <div className="input-field">
+        <input
+          id="available_from"
+          type="date"
+          value={data.available_from}
+          onChange={(e) => setData("available_from", e.target.value)}
+          className="datepicker"
+        />
+        <label htmlFor="available_from">Available From</label>
+      </div>
+
+      {/* Image URL */}
+      <div className="input-field">
+        <input
+          id="image"
+          type="text"
+          value={data.image}
+          onChange={(e) => setData("image", e.target.value)}
+        />
+        <label htmlFor="image">Image URL</label>
+      </div>
+
+      {/* Active Checkbox */}
+      <p>
+        <label>
+          <input
+            type="checkbox"
+            checked={data.is_active}
+            onChange={(e) => setData("is_active", e.target.checked)}
+          />
+          <span>Active</span>
+        </label>
+      </p>
+
+      {/* Submit Button */}
+      
+    </form>
                                 </div>
                                 <div className="modal-footer">
+
                                     <button className="modal-close btn waves-effect">Close</button>
+        <button
+          className="modal-close btn waves-effect waves-light"
+          type="submit"
+          disabled={processing}
+        >
+          Save
+          <i className="material-icons right">send</i>
+        </button>
                                 </div>
                             </div>
                         </div>

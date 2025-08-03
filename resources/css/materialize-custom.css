@@ -1,0 +1,124 @@
+.children{
+    min-height: 80vh;
+}
+/* Add any Materialize overrides or custom styles here */
+.showcase-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.animation-box {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #26a69a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+        .main {
+            flex: 1 0 auto;
+        }
+.flex-it{
+    /* display: flex; */
+    width: 100%;
+}
+    .body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    .parallax-container{
+        width: 100%;
+    }
+
+
+    .flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    z-index: 1000;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.flash-message {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.flash-message.success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.flash-message.error {
+    background-color: #f44336;
+    color: white;
+}
+
+.flash-message .material-icons {
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.flash-message .content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.flash-message .close {
+    margin-left: 15px;
+    cursor: pointer;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.flash-message .close:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .flash-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .flash-message {
+        padding: 12px 15px;
+    }
+    
+    .flash-message .material-icons {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+    
+    .flash-message .close {
+        font-size: 20px;
+    }
+}

@@ -1,26 +1,61 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Api\V1\ProductController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Api\V1\MessageController;
 
-// Route::get('/', function () {
-//     return Inertia::render('Home');
-// });
-Route::get('/', [PostController::class, 'index']);
-Route::get('/about', function () {
-    return inertia('About/About');
-});
-Route::resource('posts', PostController::class)->except('index');
 
-Route::prefix('v1')->middleware(['api'])->group(function () {
-    Route::get('/products', [ProductController::class, 'index']);
-    Route::post('/products', [ProductController::class, 'store']);
-    Route::get('/products/{product}', [ProductController::class, 'show']);
-    Route::put('/products/{product}', [ProductController::class, 'update']);
-    Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
+
 Route::get('/materialize', function () {
     return Inertia::render('Materialize/Showcase');
-})->name('materialize.showcase');
+});
+Route::get('/message', function () {
+    return Inertia::render('Materialize/Message');
+});
+
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+});
+
+// API routes (return JSON responses)
+Route::prefix('api/v1')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/messages/{conversationId}', [MessageController::class, 'getMessages']);
+    Route::post('/messages', [MessageController::class, 'sendMessage']);
+    Route::post('/conversations', [MessageController::class, 'startConversation']);
+});

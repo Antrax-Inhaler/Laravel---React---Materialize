@@ -4,11 +4,7 @@ import { useState } from "react";
 
 export default function Home({posts}){
    const route = useRoute();
-   const {flash} = usePage().props;
-  const [flashMsg, setFlashMsg] = useState(flash.message)
-    setTimeout(() => {
-        setFlashMsg(null)
-    }, 2000);
+ 
     return (
         <>
         <Head>
@@ -17,7 +13,7 @@ export default function Home({posts}){
             <h1 className="text-3xl font-bold underline">Hello User</h1>
 
             <div>
-              {flashMsg && <div className="alert">{flashMsg}</div> }
+              
                 {posts.data.map(post =>(
                     <div key={post.id} className="border-b">
                         
