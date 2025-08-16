@@ -1,3 +1,9 @@
+#Laravel Interia React Material
+<img width="1920" height="1032" alt="Picture in picture 16_08_2025 10_29_34 pm" src="https://github.com/user-attachments/assets/64a62a61-31ea-40f3-bb25-fde7b207ab5f" />
+<img width="1920" height="1032" alt="- Laravel - Google Chrome 16_08_2025 10_30_47 pm" src="https://github.com/user-attachments/assets/b8725310-772c-4798-b549-b615a7772776" />
+<img width="1920" height="1032" alt="- Laravel - Google Chrome 16_08_2025 10_30_54 pm" src="https://github.com/user-attachments/assets/7b5fc028-bc77-41ab-8c96-52dd29891332" />
+<img width="1920" height="1032" alt="- Laravel - Google Chrome 16_08_2025 10_31_28 pm" src="https://github.com/user-attachments/assets/461276e9-6ba4-487d-ad52-e5ac25720bd6" />
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
